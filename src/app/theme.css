@@ -58,9 +58,20 @@ h1 {
     color: #146C94;
 }
 
+h2{
+    font-family:'Roboto', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 300;
+    font-style: 'italic';
+    color: #0C4757;
+}
+
 * {
     box-sizing: border-box
 }
+ 
+
 
 .p-component {
     font-family: Poppins, sans-serif;
