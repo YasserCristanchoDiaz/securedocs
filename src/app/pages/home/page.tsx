@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 
 import { useState } from "react"
 import Container from '@/app/components/container';
+import image from '../../../../public/homeImage.svg'
 
 export default function Home() {
     const [message, setMessage] = useState<string>('¡Bienvenido a SecureDocs! En SecureDocs, nos enorgullece ofrecerte una solución segura y eficiente para gestionar tus documentos en línea. Nuestra plataforma ha sido diseñada pensando en la comodidad y la protección de tu información confidencial.')
@@ -22,7 +23,7 @@ export default function Home() {
             {/*
             <InputText value={message} onChange={(e)=>setMessage(e.target.value)}></InputText>
             <Button label="Espichame" onClick={clickBtn}></Button>
-    */}
+    */}    
         </Container>
     )
 } 

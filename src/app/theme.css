@@ -146,6 +146,11 @@ h2{
     }
 }
 
+.corner-image{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 :root {
     --blue-50: #f6fbfd;
     --blue-100: #d6eaf5;
