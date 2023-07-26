@@ -53,12 +53,18 @@ body {
 }
 
 h1 {
-    font-family: Poppins, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 48px;
     color: #146C94;
 }
 
-h2{
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+p{
     font-family:'Roboto', sans-serif;
     font-size: 18px;
     text-align: center;

@@ -18,11 +18,10 @@ export default function Home() {
     const lastPart = splittedMessage.slice(-1).join('!'); 
     return (
         <Container>
-            <h2>{firstPart}!<br />{lastPart}</h2>
+            <p>{firstPart}!<br />{lastPart}</p>
             {/*
             <InputText value={message} onChange={(e)=>setMessage(e.target.value)}></InputText>
-            <Button label="Espichame" onClick={clickBtn}></Button>
-    */}
+            <Button label="Espichame" onClick={clickBtn}></Button>*/}
         </Container>
     )
 } 

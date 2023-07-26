@@ -2,7 +2,7 @@
 import { Button } from 'primereact/button'
 import background from '../../../public/background.svg'
 
-export default function Container({children}: {children:React.ReactNode}){
+export default function Container({children, title}: {children:React.ReactNode, title?:string}){
     return (
         <div className="flex justify-content-center align-items-center" style={{ height: '100vh', width: '100vw',
          backgroundImage:`url(${background.src})`, backgroundRepeat:'no-repeat', backgroundSize: 'cover'}}>
@@ -15,8 +15,13 @@ export default function Container({children}: {children:React.ReactNode}){
         </div>
             </div>
             
-            <div className="md:col-6 col-11 md:p-8 p-3 border-round-3xl" style={{backgroundColor:'RGBA(25, 167,206,0.55)'}}>
-                {children}
+            <div className="grid justify-content-center alim-items-center md:col-6 col-11  border-round-3xl" style={{backgroundColor:'RGBA(25, 167,206,0.55)'}}>
+                <div className='col-12 text-center'>
+                    <h2>{title}</h2>
+                </div>
+                <div className='col-12 text-center'>
+                    {children}
+                </div>
             </div>
         </div>
     )
