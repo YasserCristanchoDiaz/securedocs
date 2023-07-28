@@ -19,7 +19,7 @@ export default function Login() {
     }
 
     return (
-        <Container title='Login'>
+        <Container title='Login' showButtons={false}>
             <div>
                 <div className="grid justify-content-center">
                     <div className='col-2'>
