@@ -12,19 +12,33 @@ export default function recoverPassword() {
     return (
         <Container title='Contraseña'>
             <div>
-                <div className="col">
-                    <label className="lbl" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '20px', color: '#FFFFFF' }}>Nueva Contraseña:</label>
-                    <Password></Password>
+                <div className="grid justify-content-center">
+                    <div className='col-2'>
+                        <label className="labels" >Contraseña:</label>
+                    </div>
+                    <div className='col-6'>
+                        <Password></Password>
+                    </div>
                 </div>
-                <div className="col">
-                    <label className="lbl" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '20px', color: '#FFFFFF' }}>Confirmar Contraseña:</label>
+                <div className="grid justify-content-center mt-2">
+                    <div className='col-2'>
+                    <label className="labels" >Confirmar Contraseña:</label>
+                    </div>
+                    <div className='col-6'>
                     <Password></Password>
+                    </div>
                 </div>
-                <div className="col">
-                    <label className="lbl" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '20px', color: '#FFFFFF' }}>Codigo Verificacion:</label>
+                <div className="grid justify-content-center mt-2">
+                    <div className='col-2'>
+                    <label className="labels">Codigo Verificacion:</label>
+                    </div>
+                    <div className='col-6' >
                     <InputText></InputText> 
+                    </div>
                 </div>
+                <div className='text-center my-1'>
                 <Button label='Aceptar'></Button>
+                </div>
             </div>
         </Container>
     )
