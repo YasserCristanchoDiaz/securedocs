@@ -61,7 +61,7 @@ export default function Register() {
                     </div>
                 </div>
                 <div className='text-center my-2'>
-                    <Button label='Registrar'></Button>
+                    <Button label='Registrar' style={{backgroundColor:'#146C94', borderColor:'#146C94'}}></Button>
                 </div>
             </div>
         </Container>

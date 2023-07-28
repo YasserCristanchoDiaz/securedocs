@@ -36,7 +36,7 @@ export default function recoverPassword() {
         </div>
                     </div>
                 </div>
-                <div className="grid justify-content-center mt-2">
+                <div className="grid justify-content-center mt-1">
                     <div className='col-2'>
                     <label className="labels" >Confirmar Contraseña:</label>
                     </div>
@@ -44,7 +44,7 @@ export default function recoverPassword() {
                     <Password></Password>
                     </div>
                 </div>
-                <div className="grid justify-content-center mt-2">
+                <div className="grid justify-content-center mt-1">
                     <div className='col-2'>
                     <label className="labels">Codigo Verificacion:</label>
                     </div>
@@ -53,7 +53,7 @@ export default function recoverPassword() {
                     </div>
                 </div>
                 <div className='text-center my-1'>
-                <Button label='Aceptar'></Button>
+                <Button label='Aceptar' style={{backgroundColor:'#146C94', borderColor:'#146C94'}}></Button>
                 </div>
             </div>
         </Container>

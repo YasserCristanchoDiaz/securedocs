@@ -23,7 +23,7 @@ export default function messageRecover() {
 
                 <div>
                     <div className="col-12 col-md-6 mt-2 mt-md-0 d-flex justify-content-center">
-                        <Button label='Enviar' ></Button>
+                        <Button label='Enviar' icon="pi pi-check" style={{backgroundColor:'#146C94', borderColor:'#146C94'}} ></Button>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ export default function Container({children, title, showButtons = true }: {child
                 <h1  style={{ paddingLeft: '20px' }}>SecureDocs</h1>
                 {showButtons && (
           <div style={{ display: 'flex', gap: '10px', paddingRight: '20px' }}>
-            <Button label='Sign up' style={{ height: '48px' }}></Button>
+            <Button label='Sign up' style={{ height: '48px' ,backgroundColor:'#146C94', borderColor:'#146C94'}}></Button>
             <Button label='Login' style={{ height: '48px' }}></Button>
           </div>
         )}

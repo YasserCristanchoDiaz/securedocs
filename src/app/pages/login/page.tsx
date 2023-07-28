@@ -29,7 +29,7 @@ export default function Login() {
                         <InputText value={user} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUser(e.target.value)}></InputText>
                     </div>
                 </div>
-                <div className="grid justify-content-center mt-2">
+                <div className="grid justify-content-center mt-1">
                     <div className='col-2'>
                         <label className="labels">Contraseña:</label>
                     </div>
@@ -41,7 +41,7 @@ export default function Login() {
                     <Link href="http://" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '14px', color: '#FFFFFF' }}>Olvide mi contraseña?</Link>
                 </div>
                 <div className='text-center'>
-                    <Button label='Entrar' onClick={handleSubmit}></Button>
+                    <Button label='Entrar' onClick={handleSubmit} style={{backgroundColor:'#146C94', borderColor:'#146C94'}}></Button>
                 </div>
             </div>
         </Container>
