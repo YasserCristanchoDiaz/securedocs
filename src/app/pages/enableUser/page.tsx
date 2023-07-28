@@ -9,7 +9,10 @@ import { useState } from "react"
 import Container from '@/app/components/container';
 
 export default function recoverPassword() {
-    const [value, setValue] = useState('');
+    const [npw, setNpw] = useState('');
+    const [cpw, setCpw] = useState('');
+    const [code, setCode] = useState('')
+
     const header = <div className="font-bold mb-3">Digita una contraseña</div>;
     const footer = (
         <>
@@ -23,6 +26,11 @@ export default function recoverPassword() {
             </ul>
         </>
     );
+
+    const handleSubmit = () => {
+
+    }
+
     return (
         <Container title='Contraseña' showButtons={false}>
             <div>
@@ -31,29 +39,32 @@ export default function recoverPassword() {
                         <label className="labels" >Contraseña:</label>
                     </div>
                     <div className='col-6'>
-                    <div className="card flex justify-content-center">
-                     <Password value={value} onChange={(e) => setValue(e.target.value)} header={header} footer={footer} />
-        </div>
+                        <div className="card flex justify-content-center">
+                            <Password value={npw} onChange={(e) => setNpw(e.target.value)} header={header} footer={footer} />
+                        </div>
                     </div>
                 </div>
                 <div className="grid justify-content-center mt-1">
                     <div className='col-2'>
-                    <label className="labels" >Confirmar Contraseña:</label>
+                        <label className="labels" >Confirmar Contraseña:</label>
                     </div>
                     <div className='col-6'>
-                    <Password></Password>
+                        <Password value={cpw} onChange={(e) => setCpw(e.target.value)} header={header} footer={footer} ></Password>
                     </div>
                 </div>
                 <div className="grid justify-content-center mt-1">
                     <div className='col-2'>
                     <label className="labels">Codigo Verificacion:</label>
                     </div>
-                    <div className='col-6' >
-                    <InputText></InputText> 
+                    <div className='col-4' >
+                        <span className="col-6 p-float-label">
+                            <InputText id="username" value={code} onChange={(e) => setCode(e.target.value)} ></InputText>
+                            <label htmlFor="code">Código</label>
+                        </span>
                     </div>
                 </div>
                 <div className='text-center my-1'>
-                <Button label='Aceptar' style={{backgroundColor:'#146C94', borderColor:'#146C94'}}></Button>
+                <Button label='Aceptar'></Button>
                 </div>
             </div>
         </Container>
