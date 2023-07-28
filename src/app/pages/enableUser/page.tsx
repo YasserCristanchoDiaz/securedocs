@@ -32,7 +32,7 @@ export default function recoverPassword() {
     }
 
     return (
-        <Container title='Contraseña'>
+        <Container title='Contraseña' showButtons={false}>
             <div>
                 <div className="grid justify-content-center">
                     <div className='col-2'>

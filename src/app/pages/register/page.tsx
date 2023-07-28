@@ -17,7 +17,7 @@ export default function Register() {
 
     return (
 
-        <Container title='Registrar usuario'>
+        <Container title='Registrar usuario' showButtons={false}>
             <div className='grid justify-content-center col-12'>
                 <div className='grid justify-content-center col-6'>
                     <div className='col-4'>
