@@ -34,7 +34,7 @@ export default function Login() {
                         <label className="labels">Contraseña:</label>
                     </div>
                     <div className='col-6'>
-                        <Password value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}></Password>
+                        <Password value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} feedback={false}></Password>
                     </div>
                 </div>
                 <div className='col-6'>
