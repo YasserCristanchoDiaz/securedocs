@@ -16,9 +16,9 @@ export default function Container({children, title}: {children:React.ReactNode, 
             </div>
             
             <div className="grid justify-content-center alim-items-center md:col-6 col-11  border-round-3xl" style={{backgroundColor:'RGBA(25, 167,206,0.55)'}}>
-                <div className='col-12 text-center'>
+               {title&&<div className='col-12 text-center'>
                     <h2>{title}</h2>
-                </div>
+                </div>}
                 <div className='col-12 text-center'>
                     {children}
                 </div>
