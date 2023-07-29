@@ -83,6 +83,10 @@ p{
     color: #FFFFFF;
 }
 
+.input-error {
+    border: 1px solid red;
+  }
+
 .p-component {
     font-family: Poppins, sans-serif;
     font-size: 1rem;
