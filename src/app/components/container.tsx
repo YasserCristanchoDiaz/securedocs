@@ -1,6 +1,7 @@
 'use client'
 import { Button } from 'primereact/button'
 import background from '../../../public/background.svg'
+import icon from '../../../public/icon.svg';
 
 export default function Container({ children, title, showContainer, showButtons = true , showMng = false}: { children: React.ReactNode, title?: string, showContainer?: boolean, showButtons?: boolean,  showMng?: boolean}) {
     return (
@@ -11,11 +12,13 @@ export default function Container({ children, title, showContainer, showButtons 
             backgroundRepeat: 'no-repeat', 
             backgroundSize: 'cover'
         }}>
+
             <div className=" navBar flex justify-content-between align-items-center" style={{
                 position: 'fixed',
                 top: 0, right: 0, left: 0, height: '15vh', width: '100vw', backgroundColor: '#D9E6FA'
             }}>
-                <h1 style={{ paddingLeft: '20px' }}>SecureDocs</h1>
+                <img src='/icon.svg'alt="Logo" style={{  width: 'auto', height: '380px', marginRight: '2px' }} />
+                {/*<h1 style={{ paddingLeft: '20px' }}>SecureDocs</h1>*/}
                 {showButtons && (
                     <div style={{ display: 'flex', gap: '10px', paddingRight: '20px' }}>
                         <Button label='Sign up' style={{ height: '48px', backgroundColor: '#146C94', borderColor: '#146C94' }}></Button>
@@ -23,6 +26,7 @@ export default function Container({ children, title, showContainer, showButtons 
                     </div>
                 )}
             </div>
+
 
             {showContainer && <div className="grid justify-content-center alim-items-center md:col-6 col-11  border-round-3xl" style={{ backgroundColor: 'RGBA(25, 167,206,0.55)' }}>
                 {title && <div className='col-12 text-center'>

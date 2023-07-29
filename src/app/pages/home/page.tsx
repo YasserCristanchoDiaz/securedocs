@@ -15,7 +15,7 @@ export default function Home() {
     const firstPart = splittedMessage.slice(0, -1).join('!'); 
     const lastPart = splittedMessage.slice(-1).join('!'); 
     return (
-        <Container>
+        <Container showContainer={true}>
             <p style={{fontSize: '22px'}}>{firstPart}!<br />{lastPart}</p>
             {/*
             <InputText value={message} onChange={(e)=>setMessage(e.target.value)}></InputText>
