@@ -37,8 +37,13 @@ export default function Login() {
             setErrorMessage('');
             authServise.login(user, password).then((res)=>{
                 console.log(res)
-                localStorage.setItem('token', res.data.token)
-                router.push('/pages/management')
+                if ( res.data.token != null ) {
+                    localStorage.setItem('token', res.data.token)
+                    router.push('/pages/management')
+                } else {
+                    setErrorMessage('Intento fallido, correo o contraseña incorrectos')
+                }
+                
             })
         }
     }
