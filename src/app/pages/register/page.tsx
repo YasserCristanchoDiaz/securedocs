@@ -7,6 +7,8 @@ import { Dropdown } from 'primereact/dropdown';
 import { Message } from 'primereact/message';
 import { Button } from 'primereact/button';
 import { Roles } from '@/app/constants/roles';
+import authServices from '@/app/services/authServices';
+import { useRouter } from 'next/navigation';
 
 
 export default function Register() {
@@ -24,7 +26,8 @@ export default function Register() {
     const [isValidPhone, setIsValidPhone] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-
+    const authService = new authServices()
+    const router = useRouter()
 
     const handleRegister = () => {
 
@@ -53,6 +56,10 @@ export default function Register() {
         } else {
             console.log('name: ' + name + '\nlast Name: ' + lastName + '\nmail: ' + mail + '\nuser: ' + user + '\nphone: ' + phone + '\nRol : ' + selectedRole)
             setErrorMessage('');
+            authService.register(mail, user, name, lastName, phone, selectedRole).then((res) => {
+                console.log(res)
+                router.push('/pages/enableUser?token='+res.data.temporalToken)
+            })
         }
     }
     return (

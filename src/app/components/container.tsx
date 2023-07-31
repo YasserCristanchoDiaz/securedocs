@@ -1,15 +1,16 @@
 'use client'
 import { Button } from 'primereact/button'
 import background from '../../../public/background.svg'
+import Link from 'next/link';
 import icon from '../../../public/icon.svg';
 
-export default function Container({ children, title, showContainer, showButtons = true , showMng = false}: { children: React.ReactNode, title?: string, showContainer?: boolean, showButtons?: boolean,  showMng?: boolean}) {
+export default function Container({ children, title, showContainer, showButtons = true, showMng = false }: { children: React.ReactNode, title?: string, showContainer?: boolean, showButtons?: boolean, showMng?: boolean }) {
     return (
         <div className="flex justify-content-center align-items-center" style={{
-            height: '100vh', 
+            height: '100vh',
             width: '100vw',
-            backgroundImage: `url(${background.src})`, 
-            backgroundRepeat: 'no-repeat', 
+            backgroundImage: `url(${background.src})`,
+            backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover'
         }}>
 
@@ -17,12 +18,16 @@ export default function Container({ children, title, showContainer, showButtons 
                 position: 'fixed',
                 top: 0, right: 0, left: 0, height: '15vh', width: '100vw', backgroundColor: '#D9E6FA'
             }}>
-                <img src='/icon.svg'alt="Logo" style={{  width: 'auto', height: '380px', marginRight: '2px' }} />
+                <img src='/icon.svg' alt="Logo" style={{ width: 'auto', height: '380px', marginRight: '2px' }} />
                 {/*<h1 style={{ paddingLeft: '20px' }}>SecureDocs</h1>*/}
                 {showButtons && (
                     <div style={{ display: 'flex', gap: '10px', paddingRight: '20px' }}>
-                        <Button label='Sign up' style={{ height: '48px', backgroundColor: '#146C94', borderColor: '#146C94' }}></Button>
-                        <Button label='Login' style={{ height: '48px' }}></Button>
+                        <Link href={'/pages/register'}>
+                            <Button label='Sign up' style={{ height: '48px', backgroundColor: '#146C94', borderColor: '#146C94' }}></Button>
+                        </Link>
+                        <Link href={'/pages/login'}>
+                            <Button label='Login' style={{ height: '48px' }}></Button>
+                        </Link>
                     </div>
                 )}
             </div>
@@ -39,7 +44,7 @@ export default function Container({ children, title, showContainer, showButtons 
 
             {showMng && <div>
 
-                <div className='col-12 text-center'>
+                <div className='text-center justify-content-center alim-items-center md:col-12 col-6'>
                     {children}
                 </div>
 

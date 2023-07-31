@@ -7,6 +7,8 @@ import { Message } from 'primereact/message';
 import { useEffect, useState } from "react"
 import Container from '@/app/components/container';
 import Link from 'next/link'; 
+import authServices from '@/app/services/authServices';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const [user, setUser] = useState<string>('')
@@ -15,6 +17,8 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const[isValidPassword, setIsValidPassword]=useState(true);
     const [isFormSubmited, setIsFormSubmited] = useState(false);
+    const authServise = new authServices()
+    const router = useRouter()
     
     const handleSubmit = () => {
 
@@ -31,6 +35,11 @@ export default function Login() {
         }else{
             console.log('user: ' + user + '\npw: ' + password)
             setErrorMessage('');
+            authServise.login(user, password).then((res)=>{
+                console.log(res)
+                localStorage.setItem('token', res.data.token)
+                router.push('/pages/management')
+            })
         }
     }
 
@@ -57,7 +66,7 @@ export default function Login() {
                     </div>
                 </div>
                 <div className='text-center  my-2'>
-                    <Link href="http://" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '14px', color: '#FFFFFF' }}>Olvide mi contraseña?</Link>
+                    <Link href="/pages/recover" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '14px', color: '#FFFFFF' }}>Olvide mi contraseña?</Link>
                 </div>
                 <div className='text-center  my-2'>
                     <Button label='Entrar' onClick={handleSubmit} style={{backgroundColor:'#146C94', borderColor:'#146C94'}}></Button>
