@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from 'primereact/button';
 import { PrimeIcons } from 'primereact/api';
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
@@ -9,6 +9,8 @@ import Container from '@/app/components/container';
 import { AdminService } from '@/app/services/adminSevices';
 import { useRouter } from 'next/navigation';
 import { InputText } from 'primereact/inputtext';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { Toast } from 'primereact/toast'
 import { log } from 'console';
 
 interface ColumnMeta {
@@ -20,8 +22,9 @@ export default function Management() {
     const router = useRouter()
     const adminService = new AdminService()
     const [data, setData] = useState([]);
-    const [loadData, setLoadData]=useState<boolean>(true);
-
+    const [loadData, setLoadData] = useState<boolean>(true);
+    const [visible, setVisible] = useState<boolean>(false);
+    const toast = useRef<Toast>(null);
 
     const columns: ColumnMeta[] = [
         { field: 'name', header: 'Nombre' },
@@ -35,7 +38,7 @@ export default function Management() {
             adminService.getUsers().then((res) => {
                 setData(res.data)
                 setLoadData(false);
-            })   
+            })
         }
     }, [loadData]);
 
@@ -46,14 +49,27 @@ export default function Management() {
     const handleEdit = (e: DataTableRowEditCompleteEvent) => {
         let { newData, index } = e;
         console.log(e);
-        
+
         adminService.saveUser(newData).then(res => {
             setLoadData(true);
         })
     }
 
-    const handleDelete = () => {
+    const accept = (rowData: any) => {
+        toast.current?.show({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+        handleDelete(rowData)
+    }
 
+    const reject = () => {
+        toast.current?.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+    }
+
+    const handleDelete = (rowData: any) => {
+        console.log(rowData.id)
+
+        /*adminService.deleteUser(rowData.id).then(res => {
+            console.log(res);
+        })*/
     }
 
     const textEditor = (options: ColumnEditorOptions) => {
@@ -71,11 +87,19 @@ export default function Management() {
                     {columns.map((col, i) => (
                         <Column key={col.field} editor={(options) => textEditor(options)} field={col.field} header={col.header} />
                     ))}
-                    <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
-                    {/*body={(rowData) => (
-                            <Button icon="pi pi-trash" onClick={handleDelete)}></Button>
-                        )}*/}
-                    <Column></Column>
+                    <Column header="Editar" rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
+                    <Column header="Eliminar" headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}
+                        body={(rowData) => (
+                            <>
+                                <Toast ref={toast} />
+                                <ConfirmDialog visible={visible} onHide={() => setVisible(false)} message="Are you sure you want to proceed?"
+                                    header="Confirmation" icon="pi pi-exclamation-triangle" accept={() => accept(rowData)} reject={reject} />
+                                <div className="card flex justify-content-center">
+                                    <Button icon="pi pi-trash" onClick={() => setVisible(true)} />
+                                </div>
+                            </>
+                        )}
+                    ></Column>
                 </DataTable>
             </div>
         </Container>
