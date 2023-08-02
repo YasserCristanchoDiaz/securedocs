@@ -22,9 +22,9 @@ export default function Container({ children, title, showContainer, showButtons 
                 {/*<h1 style={{ paddingLeft: '20px' }}>SecureDocs</h1>*/}
                 {showButtons && (
                     <div style={{ display: 'flex', gap: '10px', paddingRight: '20px' }}>
-                        <Link href={'/pages/register'}>
+                        {/*<Link href={'/pages/register'}>
                             <Button label='Sign up' style={{ height: '48px', backgroundColor: '#146C94', borderColor: '#146C94' }}></Button>
-                        </Link>
+                        </Link>*/}
                         <Link href={'/pages/login'}>
                             <Button label='Login' style={{ height: '48px' }}></Button>
                         </Link>

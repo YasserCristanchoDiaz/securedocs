@@ -24,6 +24,7 @@ export default function Management() {
     const [data, setData] = useState([]);
     const [loadData, setLoadData] = useState<boolean>(true);
     const [visible, setVisible] = useState<boolean>(false);
+    const [userDelete, setUserDelete] = useState<any | undefined>(undefined);
     const toast = useRef<Toast>(null);
 
     const columns: ColumnMeta[] = [
@@ -42,6 +43,13 @@ export default function Management() {
         }
     }, [loadData]);
 
+    useEffect(()=> {
+        if(userDelete != undefined) {
+            console.log("Eliminando al muchacho: " , userDelete);
+            
+        }
+    },[userDelete])
+
     const handleCreate = () => {
         router.push('/pages/register')
     }
@@ -55,9 +63,10 @@ export default function Management() {
         })
     }
 
-    const accept = (rowData: any) => {
+    const acceptDelete = (rowData: any) => {
         toast.current?.show({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-        handleDelete(rowData)
+        const updatedRowData = { ...rowData, id: rowData.id + 1 };
+        handleDelete(updatedRowData)
     }
 
     const reject = () => {
@@ -72,36 +81,46 @@ export default function Management() {
         })*/
     }
 
+    const showDelete = (user : any) => {
+        confirmDialog({
+            message: "Deseas elminiar a...-",
+            header: "popo",
+            icon: "pi pi-exclamation-triangle",
+            accept: () => handleDelete(user)
+        })
+    }
+
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback && options.editorCallback(e.target.value)} />;
     };
 
+    const bodyTemplate = (user: any) => {    
+        return (
+            <>
+                <Button icon="pi pi-trash" onClick={() => showDelete(user)} />
+            </>)
+    }
+
     return (
-        <Container showButtons={false} showContainer={false} showMng={true}>
-            <div className='flex justify-content-end align-items-center mb-3'>
-                <Button label='Filtrar' icon='pi pi-filter' className='mr-3'></Button>
-                <Button label='Crear' icon='pi pi-user-plus' onClick={handleCreate}></Button>
-            </div>
-            <div className="col-12">
-                <DataTable value={data} dataKey="id" editMode="row" onRowEditComplete={handleEdit} tableStyle={{ minWidth: '50rem', color: '#C9DCF9' }}>
-                    {columns.map((col, i) => (
-                        <Column key={col.field} editor={(options) => textEditor(options)} field={col.field} header={col.header} />
-                    ))}
-                    <Column header="Editar" rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
-                    <Column header="Eliminar" headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}
-                        body={(rowData) => (
-                            <>
-                                <Toast ref={toast} />
-                                <ConfirmDialog visible={visible} onHide={() => setVisible(false)} message="Are you sure you want to proceed?"
-                                    header="Confirmation" icon="pi pi-exclamation-triangle" accept={() => accept(rowData)} reject={reject} />
-                                <div className="card flex justify-content-center">
-                                    <Button icon="pi pi-trash" onClick={() => setVisible(true)} />
-                                </div>
-                            </>
-                        )}
-                    ></Column>
-                </DataTable>
-            </div>
-        </Container>
+        <>
+            <Toast ref={toast} />
+            <Container showButtons={false} showContainer={false} showMng={true}>
+                <div className='flex justify-content-end align-items-center mb-3'>
+                    <Button label='Filtrar' icon='pi pi-filter' className='mr-3'></Button>
+                    <Button label='Crear' icon='pi pi-user-plus' onClick={handleCreate}></Button>
+                </div>
+                <div className="col-12">
+                    <DataTable value={data} dataKey="id" editMode="row" onRowEditComplete={handleEdit} tableStyle={{ minWidth: '50rem', color: '#C9DCF9' }}>
+                        {columns.map((col, i) => (
+                            <Column key={col.field} editor={(options) => textEditor(options)} field={col.field} header={col.header} />
+                        ))}
+                        <Column header="Editar" rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} />
+                        <Column header="Eliminar" headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}
+                            body={bodyTemplate}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </Container>
+        </>
     )
 }

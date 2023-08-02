@@ -1,7 +1,10 @@
+"use client"
+
 import "./theme.css"
 import "primereact/resources/primereact.min.css";
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
+import { ConfirmDialog } from "primereact/confirmdialog";
 
 export default function RootLayout({
   children,
@@ -10,7 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+      <ConfirmDialog></ConfirmDialog>
+        {children}
+        </body>
     </html>
   )
 }
