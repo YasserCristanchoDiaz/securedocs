@@ -98,8 +98,8 @@ export default function Management() {
             <Toast ref={toast} />
             <Container showButtons={false} showContainer={false} showMng={true}>
                 <div className='flex justify-content-end align-items-center mb-3'>
-                    <Button label='Filtrar' icon='pi pi-filter' className='mr-3'></Button>
-                    <Button label='Crear' icon='pi pi-user-plus' onClick={handleCreate}></Button>
+                    <Button label='Hora de acceso' icon='pi pi-clock' className='mr-3'></Button>
+                    <Button label='Agregar Usuario' icon='pi pi-user-plus' onClick={handleCreate}></Button>
                 </div>
                 <div className="col-12">
                     <DataTable value={data} dataKey="id" editMode="row" onRowEditComplete={handleEdit} tableStyle={{ minWidth: '50rem', color: '#C9DCF9' }}>
