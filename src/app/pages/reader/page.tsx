@@ -12,6 +12,7 @@ import { InputText } from 'primereact/inputtext';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast'
 import { log } from 'console';
+import { DocumentService } from '@/app/services/documentService';
 
 interface ColumnMeta {
     field: string;
@@ -20,7 +21,7 @@ interface ColumnMeta {
 
 export default function Reader() {
     const router = useRouter()
-    const adminService = new AdminService()
+    const documentService = new DocumentService();
     const [data, setData] = useState([]);
     const [loadData, setLoadData] = useState<boolean>(true);
     const [visible, setVisible] = useState<boolean>(false);
@@ -35,10 +36,10 @@ export default function Reader() {
 
     useEffect(() => {
         if (loadData) {
-            adminService.getUsers().then((res) => {
+        {/* documentService.getDocument().then((res) => {
                 setData(res.data)
                 setLoadData(false);
-            })
+            })*/}
         }
     }, [loadData]);
 
@@ -57,9 +58,9 @@ export default function Reader() {
         let { newData, index } = e;
         console.log(e);
 
-        adminService.saveUser(newData).then(res => {
+        {/*documentService.saveDocument(newData).then(res => {
             setLoadData(true);
-        })
+        })*/}
     }
 
     const acceptDelete = (rowData: any) => {

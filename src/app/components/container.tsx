@@ -5,6 +5,29 @@ import Link from 'next/link';
 import icon from '../../../public/icon.svg';
 
 export default function Container({ children, title, showContainer, showButtons = true, showMng = false }: { children: React.ReactNode, title?: string, showContainer?: boolean, showButtons?: boolean, showMng?: boolean }) {
+    
+    const credentialButtons = () => {
+        return( <div style={{ display: 'flex', gap: '10px', paddingRight: '20px' }}>
+        {/*<Link href={'/pages/register'}>
+            <Button label='Sign up' style={{ height: '48px', backgroundColor: '#146C94', borderColor: '#146C94' }}></Button>
+        </Link>*/}
+        <Link href={'/pages/login'}>
+            <Button label='Login' style={{ height: '48px' }}></Button>
+        </Link>
+    </div>)
+    }
+    
+    const logoutButton = () => {
+        return( <div style={{ display: 'flex', gap: '10px', paddingRight: '20px' }}>
+        {/*<Link href={'/pages/register'}>
+            <Button label='Sign up' style={{ height: '48px', backgroundColor: '#146C94', borderColor: '#146C94' }}></Button>
+        </Link>*/}
+        <Link href={'/pages/home'}>
+            <Button label='Logout' onClick={() => {localStorage.clear()}} style={{ height: '48px' }}></Button>
+        </Link>
+    </div>)
+    }
+
     return (
         <div className="flex justify-content-center align-items-center" style={{
             height: '100vh',
@@ -20,16 +43,7 @@ export default function Container({ children, title, showContainer, showButtons 
             }}>
                 <img src='/icon.svg' alt="Logo" style={{ width: 'auto', height: '380px', marginRight: '2px' }} />
                 {/*<h1 style={{ paddingLeft: '20px' }}>SecureDocs</h1>*/}
-                {showButtons && (
-                    <div style={{ display: 'flex', gap: '10px', paddingRight: '20px' }}>
-                        {/*<Link href={'/pages/register'}>
-                            <Button label='Sign up' style={{ height: '48px', backgroundColor: '#146C94', borderColor: '#146C94' }}></Button>
-                        </Link>*/}
-                        <Link href={'/pages/login'}>
-                            <Button label='Login' style={{ height: '48px' }}></Button>
-                        </Link>
-                    </div>
-                )}
+                {showButtons ? credentialButtons() : logoutButton()  }
             </div>
 
 

@@ -10,6 +10,7 @@ import { AdminService } from '@/app/services/adminSevices';
 import { useRouter } from 'next/navigation';
 import { InputText } from 'primereact/inputtext';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { DocumentService } from '@/app/services/documentService';
 import { Toast } from 'primereact/toast'
 import { log } from 'console';
 
@@ -20,7 +21,7 @@ interface ColumnMeta {
 
 export default function Editor() {
     const router = useRouter()
-    const adminService = new AdminService()
+    const documentService = new DocumentService();
     const [data, setData] = useState([]);
     const [loadData, setLoadData] = useState<boolean>(true);
     const [visible, setVisible] = useState<boolean>(false);
@@ -35,10 +36,9 @@ export default function Editor() {
 
     useEffect(() => {
         if (loadData) {
-            adminService.getUsers().then((res) => {
+            {/*adminService.getUsers().then((res) => {
                 setData(res.data)
-                setLoadData(false);
-            })
+            */}
         }
     }, [loadData]);
 
@@ -50,16 +50,17 @@ export default function Editor() {
     },[userDelete])
 
     const handleCreate = () => {
-        router.push('/pages/register')
+        {/*router.push('/pages/register')
+    */}
     }
 
     const handleEdit = (e: DataTableRowEditCompleteEvent) => {
         let { newData, index } = e;
         console.log(e);
 
-        adminService.saveUser(newData).then(res => {
+        {/*adminService.saveUser(newData).then(res => {
             setLoadData(true);
-        })
+        })*/}
     }
 
     const acceptDelete = (rowData: any) => {

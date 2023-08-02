@@ -58,7 +58,7 @@ export default function Register() {
             setErrorMessage('');
             authService.register(mail, user, name, lastName, phone, selectedRole).then((res) => {
                 console.log(res)
-                router.push('/pages/enableUser?token='+res.data.temporalToken)
+                router.push('/pages/management?token='+res.data.temporalToken)
             })
         }
     }

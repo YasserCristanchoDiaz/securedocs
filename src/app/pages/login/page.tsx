@@ -38,8 +38,20 @@ export default function Login() {
             authServise.login(user, password).then((res)=>{
                 console.log(res)
                 if ( res.data.token != null ) {
-                    localStorage.setItem('token', res.data.token)
-                    router.push('/pages/management')
+                    localStorage.setItem('token', res.data.token);
+                    localStorage.setItem('role',res.data.rol)
+                    switch(res.data.rol){
+                    case "A":
+                        router.push('/pages/management')
+                       break 
+                    case "L":
+                        router.push('/pages/reader')   
+                        break;
+                    
+                    case "E":
+                        router.push('/pages/editor')   
+                        break; 
+                    }
                 } else {
                     setErrorMessage('Intento fallido, correo o contraseña incorrectos')
                 }
@@ -49,7 +61,7 @@ export default function Login() {
     }
 
     return (
-        <Container title='Login' showButtons={false} showContainer={true}>
+        <Container title='Login' showButtons={true} showContainer={true}>
             <div>
                 <div>
                     <div className="text-center  my-2">

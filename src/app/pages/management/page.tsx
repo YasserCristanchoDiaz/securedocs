@@ -24,7 +24,6 @@ export default function Management() {
     const [data, setData] = useState([]);
     const [loadData, setLoadData] = useState<boolean>(true);
     const [visible, setVisible] = useState<boolean>(false);
-    const [userDelete, setUserDelete] = useState<any | undefined>(undefined);
     const toast = useRef<Toast>(null);
 
     const columns: ColumnMeta[] = [
@@ -43,12 +42,6 @@ export default function Management() {
         }
     }, [loadData]);
 
-    useEffect(()=> {
-        if(userDelete != undefined) {
-            console.log("Eliminando al muchacho: " , userDelete);
-            
-        }
-    },[userDelete])
 
     const handleCreate = () => {
         router.push('/pages/register')
@@ -73,18 +66,17 @@ export default function Management() {
         toast.current?.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
     }
 
-    const handleDelete = (rowData: any) => {
-        console.log(rowData.id)
-
-        /*adminService.deleteUser(rowData.id).then(res => {
+    const handleDelete = (user: any) => {
+        adminService.deleteUser(user.id).then(res => {
+            setLoadData(true)
             console.log(res);
-        })*/
+        })
     }
 
     const showDelete = (user : any) => {
         confirmDialog({
-            message: "Deseas elminiar a...-",
-            header: "popo",
+            message: "¿Estas seguro que deseas eliminar a: " + user.name,
+            header: "¿ELIMINAR?",
             icon: "pi pi-exclamation-triangle",
             accept: () => handleDelete(user)
         })
