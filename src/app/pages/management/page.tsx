@@ -47,9 +47,7 @@ export default function Management() {
         router.push('/pages/register')
     }
 
-    const handleChange = () => {
-        router.push('/pages/accesshours')
-    }
+    
 
     const handleEdit = (e: DataTableRowEditCompleteEvent) => {
         let { newData, index } = e;
@@ -102,7 +100,7 @@ export default function Management() {
             <Toast ref={toast} />
             <Container showButtons={false} showContainer={false} showMng={true}>
                 <div className='flex justify-content-end align-items-center mb-3'>
-                    <Button label='Hora de acceso' icon='pi pi-clock' onClick={handleChange} className='mr-3'></Button>
+                   
                     <Button label='Agregar Usuario' icon='pi pi-user-plus' onClick={handleCreate}></Button>
                 </div>
                 <div className="col-12">
